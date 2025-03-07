@@ -66,8 +66,8 @@ nav {
     padding: 10px 20px;
     position: sticky;
     top: 0;
+    background-color: var(--deep-burgundy);
     z-index: 1000; /* Ensures the navbar stays on top of other elements */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional, adds a subtle shadow */
 }
 
 nav img {
@@ -316,6 +316,8 @@ nav img {
 #design-work figcaption{
     color: var(--sand);
     margin-top: 25px;
+    padding: 2ch;
+    padding-bottom: 3ch;
 }
 
 #design-work img {
@@ -336,11 +338,7 @@ nav img {
     color: var(--sand);
 }
 
-#design-work p {
-    font-size: 1rem;
-    color: var(--sand);
-    padding: 1ch;
-}
+
 
 /*website cards*/
 #web-work {
@@ -389,6 +387,10 @@ nav img {
     overflow: hidden;
 }
 
+#web-work li:hover{
+    transform: translateY(-5px);
+}
+
 #web-work figure {
     text-align: center;
     margin: 0;
@@ -413,7 +415,7 @@ nav img {
 #web-work figcaption {
     margin-top: 35px;
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    padding: 2ch;
 }
 
 #web-work figcaption a {
@@ -430,7 +432,8 @@ nav img {
 #web-work p{
     font-size: 1rem;
     color: var(--sand);
-    padding: 1ch;
+    padding: 2ch;
+    padding-bottom: 3ch;
 }
 
 

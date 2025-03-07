@@ -1,0 +1,585 @@
+:root {
+    --sand: #ffced3;
+    --deep-burgundy: #3a0000;
+    --blue: #6df9f4;
+    --coral: #ff5067;
+    --mauve: #ae6473;
+}
+
+/* Universal box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--sand);
+    font-family: 'Raleway', sans-serif;
+}
+
+main{
+    margin: 5ch;
+}
+
+h1{
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    font-size: 2rem;
+}
+
+button {
+    background-color: var(--coral); 
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+    font-size: 3ch;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--blue); 
+    color: var(--deep-burgundy);
+}
+
+/* Header styling */
+header {
+    width: 100%;
+    background-color: var(--deep-burgundy);
+    color: var(--sand);
+    position: relative;
+}
+#logo{
+    height: 100px;
+    width: auto;
+    padding: 1ch;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures the navbar stays on top of other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional, adds a subtle shadow */
+}
+
+nav img {
+    width: 400px;
+    height: auto;
+}
+
+#nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#nav-bar.active {
+    gap: 10px; /* Adjust space between items */
+    border-radius: 0px 0px 0px 20px;
+    border: 4px solid var(--coral);
+    border-top: 4px solid transparent;
+    border-right: 4px solid transparent;
+    position: absolute; /* Position the nav under the hamburger icon */
+    top: 0; /* Adjust to place below the hamburger icon */
+    right: 0; /* Align it to the right edge */
+    background-color: var(--deep-burgundy);
+    padding: 8ch;
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0); /* Move it back to normal position */
+    
+}
+
+#nav-bar a {
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#nav-bar a:hover {
+    background-color: var(--blue);
+    color: var(--deep-burgundy);
+    border-radius: 4px;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none; /* Hide by default */
+    background: none;
+    border: none;
+    color: var(--sand);
+    background-color: var(--coral);
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute; /* Position it relative to the header */
+    top: 10px; /* Adjust distance from top */
+    right: 10px; /* Adjust distance from the right */
+    z-index: 3;
+    padding-inline: .9rem;
+}
+
+
+
+/* Hero Banner */
+#hero-banner {
+    position: relative; /* Needed for absolute positioning of the text */
+    text-align: center;
+    padding: 0; /* Remove padding to make the image fill the area */
+    height: 100ch; /* Ensure the hero section has a fixed height */
+    background-color: var(--deep-burgundy);
+}
+
+#hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make sure the image covers the area without distorting */
+}
+
+/* Overlay to create the fade effect */
+#hero-banner::after {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Adjust to control how much of the image fades */
+    background: linear-gradient(to top, transparent, var(--deep-burgundy)); /* Fade to black from the top */
+}
+
+/* Centering the text */
+#hero-banner h1 {
+    position: absolute;
+    top: 50%; /* Vertical centering */
+    left: 50%; /* Horizontal centering */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    font-family: 'Raleway', sans-serif;
+    font-size: 7vw;
+    text-transform: uppercase;
+    color: var(--sand);
+    z-index: 1; /* Ensure text appears above the image and overlay */
+}
+
+/* About Me Section */
+#about-me {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Create two equal columns: one for the text and one for the image */
+    gap: 20px; /* Space between the elements */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    align-items: center; /* Vertically align items */
+    margin-bottom: 10rem;
+    margin-top: 10rem;
+}
+
+#about-me h1 {
+    grid-column: 1 / -1; /* Make the header span across both columns */
+    text-align: left;
+    color: var(--deep-burgundy);
+    font-size: 2rem;
+    margin-bottom: 1rem; /* Space below the header */
+}
+
+#about-me p {
+    font-size: 1.5rem;
+    color: var(--deep-burgundy);
+    margin-bottom: 1rem;
+}
+
+#about-me img {
+    width: 400px; /* Set the width */
+    height: 400px; /* Set the height */
+    object-fit: cover; /* Ensure the image fits the circle */
+    border-radius: 50%; /* Make the image a circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add a subtle shadow for emphasis */
+}
+
+#about-me button{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0 auto; 
+    margin-top: 3rem;
+}
+
+/* More About Me section */
+#more-about {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 10rem auto;
+    align-items: center;
+}
+
+#more-about > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 100%;
+}
+
+/* Alternate image placement */
+#more-about > div:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+#more-about h1 {
+    color: var(--deep-burgundy);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#more-about p,
+#more-about ul {
+    font-size: 1.2rem;
+    color: var(--deep-burgundy);
+    margin-bottom: 1rem;
+}
+
+#more-about ul {
+    list-style: none;
+    padding: 0;
+}
+
+#more-about ul li {
+    margin-bottom: 0.5rem;
+}
+
+#more-about img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*graphic design cards*/
+#design-work {
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 10rem;
+}
+
+#design-work h1 {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for the header */
+    grid-column: 1 / -1; /* Makes the h1 span across the whole grid */
+    text-align: left; /* Centers the h1 within the grid */
+    color: var(--deep-burgundy);
+    font-size: 2rem; /* Adjust the font size as needed */
+    margin-bottom: 2rem; /* Space below the h1 */
+    margin-top: 4rem;
+}
+
+#design-work ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#design-work li {
+    background: var(--deep-burgundy);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+#design-work li:hover {
+    transform: translateY(-5px);
+}
+
+#design-work figure {
+    margin: 0;
+    overflow: hidden;
+}
+
+#design-work figcaption{
+    color: var(--sand);
+    margin-top: 25px;
+}
+
+#design-work img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#design-work li:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+#design-work h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: var(--sand);
+}
+
+#design-work p {
+    font-size: 1rem;
+    color: var(--sand);
+    padding: 1ch;
+}
+
+/*website cards*/
+#web-work {
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 10rem;
+}
+
+#web-work h1 {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for the header */
+    grid-column: 1 / -1; /* Makes the h1 span across the whole grid */
+    text-align: left; /* Centers the h1 within the grid */
+    color: var(--deep-burgundy);
+    font-size: 2rem; /* Adjust the font size as needed */
+    margin-bottom: 2rem; /* Space below the h1 */
+    margin-top: 4rem;
+}
+
+#web-work h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: var(--sand);
+    
+} 
+
+#web-work ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#web-work li {
+    background: var(--deep-burgundy);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+#web-work figure {
+    text-align: center;
+    margin: 0;
+    padding: 0; /* Ensure no padding around the image */
+    overflow: hidden; /* Hide any overflow outside the figure */
+}
+
+#web-work figure img {
+    width: 100%; /* Make the image fill the entire figure */
+    height: 300px; /* Ensure the image fills the figure vertically as well */
+    object-fit: cover; /* Maintain the aspect ratio without stretching */
+    transform: scale(1.05);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+#web-work figure img:hover {
+    transform: scale(1.2);
+    filter: brightness(80%);
+}
+
+#web-work figcaption {
+    margin-top: 35px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#web-work figcaption a {
+    text-decoration: none;
+    color: var(--coral);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#web-work figcaption a:hover {
+    color: var(--blue);
+}
+
+#web-work p{
+    font-size: 1rem;
+    color: var(--sand);
+    padding: 1ch;
+}
+
+
+/* Full-screen image modal */
+#image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Dark background overlay */
+#modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Centered image */
+#modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 10px;
+}
+
+/* Close button */
+#close-modal {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#close-modal:hover {
+    color: var(--blue);
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: var(--deep-burgundy);
+    color: var(--sand);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+footer p {
+    margin: 0;
+    color: var(--sand);
+    padding-top: 2rem;
+}
+
+a {
+    color: var(--coral);
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--blue);
+}
+
+footer .footer-links {
+    margin-top: 10px;
+}
+
+footer .footer-links a {
+    margin: 0 10px;
+}
+
+/* Media queries for responsive font size */
+
+
+@media (max-width: 800px) {
+    .menu-toggle {
+        display: block; /* Show the hamburger menu on smaller screens */
+    }
+
+    #nav-bar {
+        display: none; /* Hide the nav bar by default */
+        flex-direction: column; /* Stack the menu items vertically when shown */
+    }
+
+    #nav-bar.active {
+        display: flex; /* Display the menu when the 'active' class is added */
+    }
+    
+    #hero-banner h1 {
+        font-size: 15vw; /* Adjust font size on tablets */
+    }
+
+    #about-me, #more-about {
+        grid-template-columns: 1fr; /* Switch to a single column */
+        text-align: center;
+    }
+
+    #about-me h1, #more-about h1 {
+        text-align: center; /* Center the headings */
+    }
+
+    #about-me img, #more-about img {
+        margin: 0 auto; /* Center the images */
+        height: 300px;
+        width: 300px;
+    }
+
+    #more-about > div {
+        flex-direction: column!important;
+        text-align: center;
+    }
+
+    #more-about img {
+        width: 250px;
+        height: 250px;
+    }
+    
+}
+
+
+@media (max-width: 320px) {
+    #hero-banner h1 {
+        font-size: 20vw; /* Adjust font size on small screens */
+    }
+}

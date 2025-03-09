@@ -12,26 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const designImages = document.querySelectorAll("#design-work li img"); // Select only images in design-work
+    const images = document.querySelectorAll("#highlighted-work img, #design-work img"); // Select images within Highlighted Works
+    let currentIndex = 0; // Track the currently displayed image
+    const imageSources = [...images].map(img => img.src); // Store all image sources in an array
+
+    // Create the modal structure
     const modal = document.createElement("div");
     modal.id = "image-modal";
     modal.innerHTML = `
         <div id="modal-overlay"></div>
         <div id="modal-content">
             <span id="close-modal">&times;</span>
+            <button id="prev-btn">&#10094;</button>
             <img id="modal-img" src="" alt="Full-size image">
+            <button id="next-btn">&#10095;</button>
         </div>
     `;
     document.body.appendChild(modal);
 
     const modalImg = document.getElementById("modal-img");
-    const modalOverlay = document.getElementById("modal-overlay");
     const closeModal = document.getElementById("close-modal");
+    const modalOverlay = document.getElementById("modal-overlay");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
 
-    designImages.forEach(image => {
+    function showImage(index) {
+        currentIndex = index;
+        modalImg.src = imageSources[currentIndex];
+        modal.style.display = "flex";
+    }
+
+    images.forEach((image, index) => {
         image.addEventListener("click", () => {
-            modal.style.display = "flex";
-            modalImg.src = image.src;
+            showImage(index);
         });
     });
 
@@ -42,6 +55,25 @@ document.addEventListener("DOMContentLoaded", () => {
     modalOverlay.addEventListener("click", () => {
         modal.style.display = "none";
     });
+
+    prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
+        modalImg.src = imageSources[currentIndex];
+    });
+
+    nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % imageSources.length;
+        modalImg.src = imageSources[currentIndex];
+    });
+
+    // Close modal when pressing ESC key
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            modal.style.display = "none";
+        } else if (event.key === "ArrowLeft") {
+            prevBtn.click();
+        } else if (event.key === "ArrowRight") {
+            nextBtn.click();
+        }
+    });
 });
-
-

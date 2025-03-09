@@ -264,6 +264,102 @@ nav img {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/*highlighted work*/
+#highlighted-work {
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-bottom: 10rem;
+}
+
+#highlighted-work h1 {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for the header */
+    grid-column: 1 / -1; /* Makes the h1 span across the whole grid */
+    text-align: left; /* Centers the h1 within the grid */
+    color: var(--deep-burgundy);
+    font-size: 2rem; /* Adjust the font size as needed */
+    margin-bottom: 2rem; /* Space below the h1 */
+    margin-top: 4rem;
+}
+
+#highlighted-work ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#highlighted-work li {
+    background: var(--deep-burgundy);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+#highlighted-work li:hover {
+    transform: translateY(-5px);
+}
+
+#highlighted-work figure {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#highlighted-work #double-image img{
+    max-width: calc(50% - 5px); /* Ensure images stay within the figure */
+    height: auto;
+    object-fit: cover;
+}
+
+#highlighted-work figcaption{
+    color: var(--sand);
+    margin-top: 25px;
+    padding: 2ch;
+    padding-bottom: 3ch;
+}
+
+#highlighted-work p{
+    font-size: 1rem;
+    color: var(--sand);
+    padding: 2ch;
+    padding-bottom: 3ch;
+}
+
+#highlighted-work img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border: 4px solid var(--blue);
+    border-top: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+#highlighted-work li:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+#highlighted-work h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: var(--sand);
+}
+
 /*graphic design cards*/
 #design-work {
     gap: 20px;
@@ -325,6 +421,10 @@ nav img {
     height: 300px;
     object-fit: cover;
     transition: transform 0.3s ease, filter 0.3s ease;
+    border: 4px solid var(--blue);
+    border-top: 0px solid transparent;
+    border-right: 0px solid transparent;
+    border-left: 0px solid transparent;
 }
 
 #design-work li:hover img {
@@ -337,8 +437,6 @@ nav img {
     margin: 10px 0;
     color: var(--sand);
 }
-
-
 
 /*website cards*/
 #web-work {
@@ -404,6 +502,10 @@ nav img {
     object-fit: cover; /* Maintain the aspect ratio without stretching */
     transform: scale(1.05);
     transition: transform 0.3s ease, filter 0.3s ease;
+    border: 4px solid var(--blue);
+    border-top: 0px solid transparent;
+    border-right: 0px solid transparent;
+    border-left: 0px solid transparent;
 }
 
 
@@ -475,13 +577,73 @@ nav img {
     max-width: 90%;
     max-height: 90vh;
     border-radius: 10px;
+    display: block;
+    margin: auto;
 }
 
-/* Close button */
+/* Default appearance in the gallery */
+#enlarge-img {
+    image-rendering: pixelated; /* Keeps the pixels crisp */
+}
+
+/* Ensure close button and navigation arrows stay visible */
+#close-modal,
+.modal-arrow {
+    position: absolute;
+    z-index: 1003; /* Ensures it stays above the image */
+}
+
+/* Ensure modal navigation buttons are always visible */
+#prev-btn, #next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1002; /* Ensure they appear above the image */
+}
+
+/* Position left arrow */
+#prev-btn {
+    left: 20px;
+}
+
+/* Position right arrow */
+#next-btn {
+    right: 20px;
+}
+
+#prev-btn:hover, #next-btn:hover{
+    color: var(--blue);
+}
+
+/* Special styling for pixel art image in modal */
+#modal-img[src*="PixelArtGameScene.jpg"] {
+    image-rendering: pixelated; /* Keeps pixels sharp */
+    width: 90vh;
+    max-height: 90vh;
+    height: auto;
+    display: block;
+    margin: auto;
+    z-index: 1001; /* Ensures it's below buttons */
+}
+
+/* Dynamically position arrows for pixel art image */
+#modal-img[src*="PixelArtGameScene.jpg"] ~ #prev-btn,
+#modal-img[src*="PixelArtGameScene.jpg"] ~ #next-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1002; /* Ensure they appear above the image */
+}
+
 #close-modal {
     position: absolute;
-    top: -40px;
-    right: -10px;
+    top: -60px;
+    right: 20px;
     font-size: 3rem;
     color: white;
     cursor: pointer;
